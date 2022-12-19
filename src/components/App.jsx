@@ -1,0 +1,20 @@
+import React from 'react';
+import { ContactForm } from './ContactForm/ContactForm';
+import ContactFilter from './ContactFilter/ContactFilter';
+import ContactList from './ContactList/ContactList';
+
+export function App() {
+  return (
+    <>
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm />
+      </div>
+      <div>
+        <h2>Contacts</h2>
+        <ContactFilter />
+        <ContactList />
+      </div>
+    </>
+  );
+}
