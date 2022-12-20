@@ -1,27 +1,20 @@
 import ContactListItem from '../ContactListItem/ContactListItem';
 import css from './ContactList.module.css';
 import { useSelector } from 'react-redux';
-import { getContacts, getStatusFilter } from '../../redux/selectors';
+import { selectContacts, selectStatusFilter } from '../../redux/selectors';
 
 const ContactList = () => {
-  const allContacts = useSelector(getStatusFilter);
-  const contacts = useSelector(getContacts);
-  console.log(contacts);
-  // console.log(allContacts);
+  const filter = useSelector(selectStatusFilter);
+  const contacts = useSelector(selectContacts);
+
   const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(allContacts)
+    contact.name.toLowerCase().includes(filter)
   );
-  // console.log(visibleContacts)
+// console.log(visibleContacts)
   return (
     <ul className={css.contactList}>
       {visibleContacts.map(({ name, number, id }) => (
-        <ContactListItem
-          key={name}
-          name={name}
-          number={number}
-          id={id}
-          // onDeleteContact={onDeleteContact}
-        />
+        <ContactListItem key={name} name={name} number={number} id={id} />
       ))}
     </ul>
   );
