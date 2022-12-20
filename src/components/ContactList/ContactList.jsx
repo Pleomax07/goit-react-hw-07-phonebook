@@ -6,11 +6,9 @@ import { selectContacts, selectStatusFilter } from '../../redux/selectors';
 const ContactList = () => {
   const filter = useSelector(selectStatusFilter);
   const contacts = useSelector(selectContacts);
-
   const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter)
   );
-// console.log(visibleContacts)
   return (
     <ul className={css.contactList}>
       {visibleContacts.map(({ name, number, id }) => (
@@ -19,5 +17,4 @@ const ContactList = () => {
     </ul>
   );
 };
-
 export default ContactList;

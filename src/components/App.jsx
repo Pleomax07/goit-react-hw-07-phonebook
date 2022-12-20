@@ -4,7 +4,7 @@ import ContactList from './ContactList/ContactList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../redux/operations';
-import { selectError, selectIsLoading } from 'redux/selectors';
+import { selectError, selectIsLoading, selectContacts } from 'redux/selectors';
 
 export function App() {
   const dispatch = useDispatch();
@@ -15,6 +15,8 @@ export function App() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  const allContactsSumm = useSelector(selectContacts).length;
+
   return (
     <>
       <div>
@@ -22,7 +24,7 @@ export function App() {
         <ContactForm />
       </div>
       <div>
-        <h2>Contacts</h2>
+        <h2>Contacts ({allContactsSumm})</h2>
         <ContactFilter />
         {isLoading && !error && <b>Request in progress...</b>}
         <ContactList />
